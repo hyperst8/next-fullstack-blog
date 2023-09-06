@@ -19,8 +19,8 @@
 .logout {
   padding: 5px;
   border: none;
-  background-color: #53c28b;
-  color: white;
+  background-color: var(--buttonColor);
+  color: var(--buttonText);
   cursor: pointer;
   border-radius: 3px;
 }

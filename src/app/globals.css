@@ -1,3 +1,7 @@
+:root {
+  --buttonColor: #53c28b;
+  --buttonText: #ffffff;
+}
 * {
   box-sizing: border-box;
   padding: 0;
