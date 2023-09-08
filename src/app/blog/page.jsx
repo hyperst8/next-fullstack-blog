@@ -3,6 +3,11 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import Image from "next/image";
 
+export const metadata = {
+  title: "Hyperst8 | Blog",
+  description: "This is the blog page",
+};
+
 async function getData() {
   const res = await fetch("http://localhost:3000/api/posts", {
     cache: "no-store",

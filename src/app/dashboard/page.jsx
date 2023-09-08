@@ -3,6 +3,11 @@ import useSWR from "swr";
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 
+export const metadata = {
+  title: "Hyperst8 | Dashboard",
+  description: "This is the dashboard page",
+};
+
 const Dashboard = () => {
   /** useEffect method to fetch data **/
   // const [data, setData] = useState([]);
