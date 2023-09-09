@@ -2,6 +2,7 @@
 import useSWR from "swr";
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
+import { useSession } from "next-auth/react";
 
 export const metadata = {
   title: "Hyperst8 | Dashboard",
@@ -33,8 +34,11 @@ const Dashboard = () => {
   //   getData();
   // }, []);
 
-  /** SWR method to fetch data **/
+  //** Session **/
+  const session = useSession();
+  console.log(session);
 
+  /** SWR method to fetch data **/
   const fetcher = (url) => fetch(url).then((res) => res.json());
 
   const { data, error, isLoading } = useSWR(
@@ -44,8 +48,6 @@ const Dashboard = () => {
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
-
-  console.log(data);
 
   return <div className={styles.container}>Dashboard</div>;
 };
