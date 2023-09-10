@@ -3,6 +3,7 @@ import useSWR from "swr";
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export const metadata = {
   title: "Hyperst8 | Dashboard",
@@ -36,7 +37,8 @@ const Dashboard = () => {
 
   //** Session **/
   const session = useSession();
-  console.log(session);
+
+  const router = useRouter();
 
   /** SWR method to fetch data **/
   const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -46,10 +48,17 @@ const Dashboard = () => {
     fetcher
   );
 
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+  if (session.status === "loading") {
+    return <div>loading...</div>;
+  }
 
-  return <div className={styles.container}>Dashboard</div>;
+  if (session.status === "unauthenticated") {
+    router.push("/dashboard/login");
+  }
+
+  if (session.status === "authenticated") {
+    return <div className={styles.container}>Dashboard</div>;
+  }
 };
 
 export default Dashboard;
